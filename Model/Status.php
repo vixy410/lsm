@@ -13,7 +13,6 @@ class Status extends AppModel {
  * @var mixed False or table name
  */
 	public $useTable = 'status';
-         public $actsAs = array('Containable');
 
 /**
  * Display field

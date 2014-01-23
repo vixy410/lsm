@@ -7,8 +7,8 @@
       <!------------------------------------>
       
       <!-------------Filter---------------->
-      
-    <?php echo $this->element('filterMenu');?>
+      <?php echo $this->element('filterMenu');?>
+
       <!-------------/Filter---------------->
     
 	<h2><?php echo __('Leads'); ?></h2>

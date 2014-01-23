@@ -15,21 +15,20 @@ class UsersController extends AppController {
  */
 	public $components = array('Paginator');
         
-        
- /*
- @beforeFilter
- allow add and logout in user contreoller for all users
-*/   
+/*
+@beforeFilter
+allow add and logout in user contreoller for all users
+*/
      public function beforeFilter() {
            parent::beforeFilter();
            $this->Auth->allow( 'login', 'logout' );
        }
        
 /*
- * @isAuthorize
- * deny other users to edit or delete
- * admin has all access rights
- */
+* @isAuthorize
+* deny other users to edit or delete
+* admin has all access rights
+*/
        public function isAuthorized($user) {
            
            if($user['role'] == 'admin'){
@@ -44,9 +43,9 @@ class UsersController extends AppController {
        }
 
  /**
-  * login method
-  * 
-  */
+* login method
+*
+*/
        
        public function login(){
              if( $this->request->is('post') ){
@@ -59,22 +58,14 @@ class UsersController extends AppController {
                                 ));
              }
            }
-        /** public function login(){
-             if( $this->request->is('post') ){
-                 if( $this->Auth->login() ){
-                     return $this->redirect($this->Auth->redirect());
-                 }
-                 $this->Session->setFlash(__('Invalid username or password. Try again'));
-             }
-           }**/
+   
 /**
-  * logout method
-  * 
-  */
+* logout method
+*
+*/
            public function logout(){
                return $this->redirect($this->Auth->logout());
            }
-
 
 /**
  * index method
@@ -112,13 +103,13 @@ class UsersController extends AppController {
 			if ($this->User->save($this->request->data)) {
 				$this->Session->setFlash(__('The user has been saved.'),'alert',array(
                                     'plugin' => 'BoostCake',
-                                    'class'=> 'alert-success'
+                                    'class' => 'alert-success'
                                 ));
 				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.'),'alert',array(
                                     'plugin' => 'BoostCake',
-                                    'class'=> 'alert-danger'
+                                    'class' => 'alert-danger'
                                 ));
 			}
 		}
@@ -139,13 +130,13 @@ class UsersController extends AppController {
 			if ($this->User->save($this->request->data)) {
 				$this->Session->setFlash(__('The user has been saved.'),'alert',array(
                                     'plugin' => 'BoostCake',
-                                    'class'=> 'alert-success'
+                                    'class' => 'alert-success'
                                 ));
 				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.'),'alert',array(
                                     'plugin' => 'BoostCake',
-                                    'class'=> 'alert-danger'
+                                    'class' => 'alert-danger'
                                 ));
 			}
 		} else {
@@ -170,12 +161,12 @@ class UsersController extends AppController {
 		if ($this->User->delete()) {
 			$this->Session->setFlash(__('The user has been deleted.'),'alert',array(
                                     'plugin' => 'BoostCake',
-                                    'class'=> 'alert-success'
+                                    'class' => 'alert-success'
                                 ));
 		} else {
 			$this->Session->setFlash(__('The user could not be deleted. Please, try again.'),'alert',array(
                                     'plugin' => 'BoostCake',
-                                    'class'=> 'alert-danger'
+                                    'class' => 'alert-danger'
                                 ));
 		}
 		return $this->redirect(array('action' => 'index'));

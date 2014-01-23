@@ -1,5 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
+
 /**
  * Leads Controller
  *
@@ -13,13 +14,13 @@ class LeadsController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator','CsvView.CsvView');
+	  public $components = array('Paginator','CsvView.CsvView');
 
           /**
-   * export method
-   * Export to csv
-   * public $components = array('Cookie','RequestHandler','Security') in AppControler
-   */
+* export method
+* Export to csv
+* public $components = array('Cookie','RequestHandler','Security') in AppControler
+*/
         //var $components = array('RequestHandler');
         
         
@@ -67,90 +68,7 @@ class LeadsController extends AppController {
         $this->viewClass = 'CsvView.Csv';
         $this->set( compact( 'data', '_serialize', '_header', '_extract' ) );
     }
-        
-   function export_leads(){
-       $this->Lead->contain( array('Account.account_name','Status.status') );
-       $data = $this->Lead->find('first', array( 'fields'=> array( 
-                                                         'Lead.id',
-                                                         'account' =>  'Account.account_name',
-                                                          'Lead.name',
-                                                          'Lead.board_number',
-                                                          'Lead.mobile_number',
-                                                          'Lead.requirements',
-                                                          'Lead.total_price_quoted',
-                                                          'Lead.our_price',
-                                                          'Lead.margin',
-                                                          'Lead.closing_month',
-                                                          'Lead.probablity',
-                                                          'Status.status',
-                                                          'Lead.date_added'
-           )));
-       $this->Export->exportCsv($data);
-   }
-        
-    function export()
-        {
-            // Stop Cake from displaying action's execution time
-            Configure::write('debug',0);
-            // Find fields needed without recursing through associated models
-            $data = $this->Lead->find(
-                'all',
-                 array(
-                     'contain' => array(
-                         'Account',
-                         'Status'
-                     ),
-                     'fields' => array(
-                         'id',
-                         'account_id',
-                         'name',
-                         'email',
-                         'board_number',
-                         'mobile_number',
-                         'requirements',
-                         'total_price_quoted',
-                         'our_price',
-                         'margin',
-                         'closing_month',
-                         'probablity',
-                         //'type_id',
-                         //'status_id',
-                         //'user_id',
-                         'status_id',
-                         'date_added'
-                         ),
-                     'order' => 'Lead.id ASC',
-                     'contain' => FALSE
-                 )
-                    
-            );
-            // Define column headers for CSV file, in same array format as the data itself
-            $headers = array(
-                'Lead'=>array(
-                    'id' => 'ID',
-                    'account_id' => 'Account Name',
-                    'name' => 'Name',
-                    'email' => 'Email',
-                    'board_number' => 'Board Number',
-                    'mobile_number' => 'Mobile Number',
-                    'requirements' => 'Requirements',
-                    'total_price_quoted' => 'Total Price Quoted',
-                    'our_price' => 'Our Price',
-                    'margin' => 'Margin',
-                    'closing_month' => 'Closing Month',
-                    'probablity' => 'Probablity',
-                    //'type_id' => 'Type',
-                    //'status_id' => 'Status',
-                    //'user_id' => 'Posted by',
-                    'status_id' => 'Status',
-                    'date_added' => 'Date'
-                )
-            );
-            // Add headers to start of data array
-            array_unshift($data,$headers);
-            // Make the data available to the view (and the resulting CSV file)
-            $this->set(compact('data'));
-        } 
+
 /**
  * index method
  *
@@ -158,7 +76,14 @@ class LeadsController extends AppController {
  */
 	public function index() {
 		$this->Lead->recursive = 0;
+                $this->Paginator->settings = array(
+                    'order' => array(
+                        'date_added' => 'desc'
+                    )
+                );
 		$this->set('leads', $this->Paginator->paginate());
+                
+                
 	}
 
 /**
@@ -187,20 +112,25 @@ class LeadsController extends AppController {
 			if ($this->Lead->save($this->request->data)) {
 				$this->Session->setFlash(__('The lead has been saved.'),'alert',array(
                                     'plugin' => 'BoostCake',
-                                    'class'=> 'alert-succsess'
+                                    'class' => 'alert-success'
                                 ));
 				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The lead could not be saved. Please, try again.'),'alert',array(
                                     'plugin' => 'BoostCake',
-                                    'class'=> 'alert-danger'
+                                    'class' => 'alert-danger'
                                 ));
 			}
 		}
+                
+                
+                   
+
 		$accounts = $this->Lead->Account->find('list');
 		$statuses = $this->Lead->Status->find('list');
 		$users = $this->Lead->User->find('list');
 		$this->set(compact('accounts', 'statuses', 'users'));
+                //$this->set('email' , $email);
 	}
 
 /**
@@ -218,13 +148,13 @@ class LeadsController extends AppController {
 			if ($this->Lead->save($this->request->data)) {
 				$this->Session->setFlash(__('The lead has been saved.'),'alert',array(
                                     'plugin' => 'BoostCake',
-                                    'class'=> 'alert-success'
+                                    'class' => 'alert-success'
                                 ));
 				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The lead could not be saved. Please, try again.'),'alert',array(
                                     'plugin' => 'BoostCake',
-                                    'class'=> 'alert-danger'
+                                    'class' => 'alert-danger'
                                 ));
 			}
 		} else {
@@ -253,13 +183,63 @@ class LeadsController extends AppController {
 		if ($this->Lead->delete()) {
 			$this->Session->setFlash(__('The lead has been deleted.'),'alert',array(
                                     'plugin' => 'BoostCake',
-                                    'class'=> 'alert-success'
+                                    'class' => 'alert-success'
                                 ));
 		} else {
 			$this->Session->setFlash(__('The lead could not be deleted. Please, try again.'),'alert',array(
                                     'plugin' => 'BoostCake',
-                                    'class'=> 'alert-danger'
+                                    'class' => 'alert-danger'
                                 ));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+        
+        
+        public function active(){
+            $this->Lead->recursive = 0;
+                $this->Paginator->settings = array(
+                    'conditions' => array('Status.status' => 'Active'),
+                    'order' => array(
+                        'date_added' => 'desc')
+                );
+		$this->set('leads', $this->Paginator->paginate());
+        }
+        
+        
+         public function closed(){
+            $this->Lead->recursive = 0;
+                $this->Paginator->settings = array(
+                    'order' => array(
+                        'date_added' => 'desc'
+                    ),
+                    'conditions' => array('Status.status' => 'Closed')
+                );
+		$this->set('leads', $this->Paginator->paginate());
+        }
+        
+        
+         public function won(){
+            $this->Lead->recursive = 0;
+                $this->Paginator->settings = array(
+                    'order' => array(
+                        'date_added' => 'desc'
+                    ),
+                    'conditions' => array('Status.status' => 'Won')
+                );
+		$this->set('leads', $this->Paginator->paginate());
+        }
+        
+        
+         public function lost(){
+            $this->Lead->recursive = 0;
+                $this->Paginator->settings = array(
+                    'order' => array(
+                        'date_added' => 'desc'
+                    ),
+                    'conditions' => array('Status.status' => 'Lost')
+                );
+		$this->set('leads', $this->Paginator->paginate());
+        }
+        
+        
+        }

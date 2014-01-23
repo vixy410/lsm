@@ -1,4 +1,5 @@
 <div class="users form">
+     <?php echo $this->Session->flash();?>
     <?php $this->Html->addCrumb('Edit User'); ?>
 <?php echo $this->Form->create('User',array(
                                     'class' => 'form-horizontal well',

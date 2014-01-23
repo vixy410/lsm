@@ -37,7 +37,7 @@ class AppController extends Controller {
                                 'Paginator' => array('className' => 'BoostCake.BoostCakePaginator'),
                                 'Session');
     public $components = array( 
-                                'DebugKit.Toolbar',
+                             
                                 'Session',
                                 'Auth' => array(
                                             'flash' =>array(
@@ -55,21 +55,22 @@ class AppController extends Controller {
                                             ),
                                 'Cookie',
                                 'RequestHandler',
+                                'Security'
                                 );
-	
-/*
-   isAuthorize method
-   access rights to login user	
-	
+    
+    /*
+isAuthorize method
+access rights to login user        
+        
 */
     
     public function isAuthorized( $user ){
         return true;
     }
-	
+        
 /*
-   beforeFilter method
-   access rights to non-logged in users
+beforeFilter method
+access rights to non-logged in users
 */
     
     public function beforeRender() {
@@ -80,9 +81,9 @@ class AppController extends Controller {
     public function beforeFilter() {
         parent::beforeFilter();
         $this->Auth->allow( 'login' );
-		// variable $logged_in contains login identifier 
+                // variable $logged_in contains login identifier
         $this->set( 'logged_in', $this->Auth->loggedIn() ); // used in view
-		// $current_user contains current user info with id
+                // $current_user contains current user info with id
         $this->set( 'current_user', $this->Auth->user() ); //used in view
     }
 }

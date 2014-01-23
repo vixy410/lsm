@@ -1,5 +1,17 @@
 <?php echo $this->Html->css('custom', array( 'inline' => FALSE)) ?>
 <?php if( !$logged_in ): ?>
+ <?php echo $this->Session->flash();?>
+
+<div class="row ">
+    <center>
+    <?php echo $this->Html->image('logo2.png',array('class'=>'img-rounded img-responsive',  'width'=> '70%'))?>
+    </center>
+    <center>
+    <div class="text-success well col-sm-6 col-md-offset-3">
+        <strong>Welcome to Meridian Solutions : Lead Sales Management</strong>
+    </div>
+    </center>
+</div>
 
 <div class="well col-sm-6 col-md-offset-3" >
 <?php echo $this->Session->flash('auth'); ?>

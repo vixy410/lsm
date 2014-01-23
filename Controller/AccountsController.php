@@ -51,13 +51,13 @@ class AccountsController extends AppController {
 			if ($this->Account->save($this->request->data)) {
 				$this->Session->setFlash(__('The account has been saved.'),'alert',array(
                                     'plugin' => 'BoostCake',
-                                    'class'=> 'alert-success'
+                                    'class' => 'alert-success'
                                 ));
 				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The account could not be saved. Please, try again.'),'alert',array(
                                     'plugin' => 'BoostCake',
-                                    'class'=> 'alert-danger'
+                                    'class' => 'alert-danger'
                                 ));
 			}
 		}
@@ -78,13 +78,13 @@ class AccountsController extends AppController {
 			if ($this->Account->save($this->request->data)) {
 				$this->Session->setFlash(__('The account has been saved.'),'alert',array(
                                     'plugin' => 'BoostCake',
-                                    'class'=> 'alert-success'
+                                    'class' => 'alert-success'
                                 ));
 				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The account could not be saved. Please, try again.'),'alert',array(
                                     'plugin' => 'BoostCake',
-                                    'class'=> 'alert-danger'
+                                    'class' => 'alert-danger'
                                 ));
 			}
 		} else {
@@ -109,12 +109,12 @@ class AccountsController extends AppController {
 		if ($this->Account->delete()) {
 			$this->Session->setFlash(__('The account has been deleted.'),'alert',array(
                                     'plugin' => 'BoostCake',
-                                    'class'=> 'alert-success'
+                                    'class' => 'alert-success'
                                 ));
 		} else {
 			$this->Session->setFlash(__('The account could not be deleted. Please, try again.'),'alert',array(
                                     'plugin' => 'BoostCake',
-                                    'class'=> 'alert-danger'
+                                    'class' => 'alert-danger'
                                 ));
 		}
 		return $this->redirect(array('action' => 'index'));

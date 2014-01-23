@@ -13,7 +13,6 @@ class Account extends AppModel {
  * @var string
  */
 	public $displayField = 'account_name';
-         public $actsAs = array('Containable');
 
 /**
  * Validation rules

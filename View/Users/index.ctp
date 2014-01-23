@@ -24,7 +24,7 @@
 		<td><?php echo h($user['User']['fname']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['lname']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['username']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['password'],array('type' => 'password')); ?>&nbsp;</td>
+		<td><?php echo h($user['User']['password']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['email']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['phone']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['role']); ?>&nbsp;</td>

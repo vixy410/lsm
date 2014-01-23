@@ -1,4 +1,5 @@
 <div class="statuses form">
+     <?php echo $this->Session->flash();?>
     <?php $this->Html->addCrumb('Add Status', '/statuses/add/'); ?>
 <?php echo $this->Form->create('Status',array(
                                     'class' => 'form-horizontal well',

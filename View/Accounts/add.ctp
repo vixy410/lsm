@@ -1,4 +1,5 @@
 <div class="accounts form">
+     <?php echo $this->Session->flash();?>
     <?php $this->Html->addCrumb('Add Account', '/accounts/add/'); ?>
 <?php echo $this->Form->create('Account',array(
                                     'class' => 'form-horizontal well',

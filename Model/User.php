@@ -14,7 +14,6 @@ class User extends AppModel {
  * @var string
  */
 	public $displayField = 'username';
-         public $actsAs = array('Containable');
 
 /**
  * Validation rules
@@ -23,6 +22,16 @@ class User extends AppModel {
  */
 	public $validate = array(
 		'fname' => array(
+			'notEmpty' => array(
+				'rule' => array('notEmpty'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'lname' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
 				//'message' => 'Your custom message here',
@@ -85,7 +94,7 @@ class User extends AppModel {
 	);
         
         
-/**
+ /**
  * Password hash
  * Place on top to use SimplePasswordHasher class
  * App::uses('SimplePasswordHasher', 'Controller/Component/Auth');

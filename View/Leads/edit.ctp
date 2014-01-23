@@ -1,6 +1,7 @@
 <div class="leads form">
     <?php echo $this->Html->script('margin', array('inline' => false)); ?>
    <?php $this->Html->addCrumb('Edit Lead'); ?>
+    <?php echo $this->Session->flash();?>
 <?php echo $this->Form->create('Lead',array(
                                     'class' => 'form-horizontal well',
                                     'role' => 'form',
