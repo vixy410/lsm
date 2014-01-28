@@ -81,16 +81,7 @@ class User extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'created' => array(
-			'datetime' => array(
-				'rule' => array('datetime'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
+		
 	);
         
         
@@ -98,16 +89,24 @@ class User extends AppModel {
  * Password hash
  * Place on top to use SimplePasswordHasher class
  * App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
- */
+ */var $createField = 'created';
          public function beforeSave($options = array()) {
+              parent::beforeSave($options);
                 if (isset($this->data[$this->alias]['password'])) {
                         $passwordHasher = new SimplePasswordHasher();
                         $this->data[$this->alias]['password'] = $passwordHasher->hash(
                         $this->data[$this->alias]['password']
                         );
                     }
+                    // fill created field in users table
+                    $nowDate = date('Y-m-d H:i:s'); 
+                    if ($this->createField ) {
+                        $this->set($this->createField, $nowDate);
+                } 
             return true;
         }
+        
+         
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 

@@ -9,8 +9,11 @@ and open the template in the editor.
 */
 
 html, body {
-        background-color: #eee;
-      }
+       background: transparent url(../img/adminBack.jpg) 0 0 repeat;
+    padding-top: 51px;
+    min-height: 402px;
+}
+      
       body {
         padding-top: 40px; 
       }

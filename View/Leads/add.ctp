@@ -31,7 +31,7 @@
                 echo $this->Form->input('requirements', array('rows' => '5'));
                 echo $this->Form->input('total_price_quoted');
                 echo $this->Form->input('our_price');
-                echo $this->Form->input('margin');
+                echo $this->Form->input('margin',array('readonly'));
                 echo $this->Form->button('Margin',
                                             array(
                                                 'onClick' => 'margin(); return false',
@@ -41,6 +41,7 @@
                                 
 <?php
                 echo $this->Form->input('closing_month',array(
+                    'label'=>'Likely Closing Date',
                     "between"=>"<div class='col-sm-10 input-group date form_date col-md-5' data-date='' data-date-format='dd MM yyyy' data-link-field='dtp_input2' data-link-format='yyyy-mm-dd'>",
                     'after' => '<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
@@ -49,8 +50,10 @@
                 ));
                 echo $this->Form->input('probablity');
                 echo $this->Form->input('status_id');
-                echo $this->Form->input('user_id');
-                echo $this->Form->input('date_added');
+                //echo $this->Form->hidden( 'user_id' );
+                //echo $this->Form->input('user_id',array('default'=> $current_user['username']));
+               // echo $this->Form->input('user_id',array('type' => 'hidden'));
+                //echo $this->Form->input('date_added',array('type'=>'hidden'));
         ?>
         </fieldset>
 <?php $options = array(

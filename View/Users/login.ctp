@@ -4,7 +4,7 @@
 
 <div class="row ">
     <center>
-    <?php echo $this->Html->image('logo2.png',array('class'=>'img-rounded img-responsive',  'width'=> '70%'))?>
+    <?php echo $this->Html->image('logo2.png',array('class'=>'img-rounded img-responsive',  'width'=> '60%'))?>
     </center>
     <center>
     <div class="text-success well col-sm-6 col-md-offset-3">

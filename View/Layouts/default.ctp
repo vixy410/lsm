@@ -32,6 +32,7 @@
 		//echo $this->Html->css('cake.generic');
                 echo $this->Html->css('bootstrap.min');
                 echo $this->Html->css('bootstrap-theme.min');
+                echo $this->Html->css('lms');
                 //echo $this->Html->css('bootstrap-datetimepicker.min');
                 
                 echo $this->Html->script('jquery');

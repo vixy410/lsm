@@ -109,6 +109,8 @@ class LeadsController extends AppController {
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Lead->create();
+                        $this->request->data['Lead']['user_id'] = $this->Auth->user('id');
+                       $this->request->data['Lead']['date_added'] = date_default_timezone_set("Asia/Kolkata");
 			if ($this->Lead->save($this->request->data)) {
 				$this->Session->setFlash(__('The lead has been saved.'),'alert',array(
                                     'plugin' => 'BoostCake',

@@ -1,0 +1,15 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 27-Jan-2014, 16:04:27
+    Author     : Meridian Solutions
+*/
+
+html, body {
+    background: transparent url(../img/adminBack.jpg) 0 0 repeat;
+    //padding-top: 51px;
+    min-height: 402px;
+}

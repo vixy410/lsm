@@ -35,7 +35,8 @@ class AppController extends Controller {
                                 'Html' => array('className' => 'BoostCake.BoostCakeHtml'), 
                                 'Form' => array('className' => 'BoostCake.BoostCakeForm'),
                                 'Paginator' => array('className' => 'BoostCake.BoostCakePaginator'),
-                                'Session');
+                                'Session',
+                                );
     public $components = array( 
                              
                                 'Session',
@@ -55,7 +56,7 @@ class AppController extends Controller {
                                             ),
                                 'Cookie',
                                 'RequestHandler',
-                                'Security'
+                                //'Security'
                                 );
     
     /*
@@ -80,10 +81,19 @@ access rights to non-logged in users
     
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow( 'login' );
+
+        
+    //$datetime = $this->Time->convert(time(), 'Asia/Kolkata');
+   // echo date('d-m-Y H:i:s'); //Returns IST
+    $this->Auth->allow( 'login' );
                 // variable $logged_in contains login identifier
         $this->set( 'logged_in', $this->Auth->loggedIn() ); // used in view
                 // $current_user contains current user info with id
         $this->set( 'current_user', $this->Auth->user() ); //used in view
+        
+       // App::import('Model', 'User');
+         // User::store($this->Auth->user());
     }
+    
+   
 }

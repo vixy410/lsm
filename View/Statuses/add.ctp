@@ -1,6 +1,7 @@
 <div class="statuses form">
      <?php echo $this->Session->flash();?>
     <?php $this->Html->addCrumb('Add Status', '/statuses/add/'); ?>
+    <?php if ($current_user['role']=='admin'): ?>
 <?php echo $this->Form->create('Status',array(
                                     'class' => 'form-horizontal well',
                                     'role' => 'form',
@@ -27,4 +28,5 @@ $options = array(
     'class' => 'btn btn-success col-sm-offset-2'
 );
 echo $this->Form->end($options); ?>
+    <?php endif;?>
 </div>

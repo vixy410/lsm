@@ -13,6 +13,7 @@ class UsersController extends AppController {
  *
  * @var array
  */
+    
 	public $components = array('Paginator');
         
 /*
@@ -99,7 +100,9 @@ allow add and logout in user contreoller for all users
  */
 	public function add() {
 		if ($this->request->is('post')) {
+                    
 			$this->User->create();
+                        $this->request->data['User']['created'] = date_default_timezone_set("Asia/Kolkata");
 			if ($this->User->save($this->request->data)) {
 				$this->Session->setFlash(__('The user has been saved.'),'alert',array(
                                     'plugin' => 'BoostCake',

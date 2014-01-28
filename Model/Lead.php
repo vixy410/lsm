@@ -94,21 +94,12 @@ class Lead extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'date_added' => array(
-			'datetime' => array(
-				'rule' => array('datetime'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
+		
 	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
-            public function afterSave($created, $options = array()) {
+        /*    public function afterSave($created, $options = array()) {
                 parent::afterSave($created, $options);
                  $Email = new CakeEmail();
                     $email = $Email->from(array('vixy410@gmail.com' => 'My Site'))
@@ -117,8 +108,20 @@ class Lead extends AppModel {
                              ->send('A Lead has been Added');
 
                 
+            }*/
+       //public function beforeSave($options ) { $this->request->data['Lead']['user_id'] = $this->Auth->user('id'); }
+        var $createField = 'date_added';
+        public function beforeSave($options = array()) {
+            parent::beforeSave($options);
+            $nowDate = date('Y-m-d H:i:s'); 
+            if($this->createField){
+                $this->set($this->createField, $nowDate);
             }
-/**
+            
+            return true;
+        }
+
+        /**
  * belongsTo associations
  *
  * @var array

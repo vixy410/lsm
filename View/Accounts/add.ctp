@@ -18,6 +18,10 @@
 		<legend><?php echo __('Add Account'); ?></legend>
 	<?php
 		echo $this->Form->input('account_name');
+                echo $this->Form->input('address');
+                echo $this->Form->input('city');
+                echo $this->Form->input('state');
+                echo $this->Form->input('board_number',array('label'=>'Board Number'));
 		echo $this->Form->input('url');
 		echo $this->Form->input('description',array('rows' => '5'));
 	?>

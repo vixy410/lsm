@@ -8,6 +8,10 @@
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('account_name'); ?></th>
+                        <th><?php echo $this->Paginator->sort('address'); ?></th>
+                        <th><?php echo $this->Paginator->sort('city'); ?></th>
+                        <th><?php echo $this->Paginator->sort('state'); ?></th>
+                        <th><?php echo $this->Paginator->sort('board_number','Board Number'); ?></th>
 			<th><?php echo $this->Paginator->sort('url'); ?></th>
 			<th><?php echo $this->Paginator->sort('description'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
@@ -16,6 +20,10 @@
 	<tr>
 		<td><?php echo h($account['Account']['id']); ?>&nbsp;</td>
 		<td><?php echo h($account['Account']['account_name']); ?>&nbsp;</td>
+                <td><?php echo h($account['Account']['address']); ?>&nbsp;</td>
+                <td><?php echo h($account['Account']['city']); ?>&nbsp;</td>
+                <td><?php echo h($account['Account']['state']); ?>&nbsp;</td>
+                <td><?php echo h($account['Account']['board_number']); ?>&nbsp;</td>
 		<td><?php echo h($account['Account']['url']); ?>&nbsp;</td>
 		<td><?php echo h($account['Account']['description']); ?>&nbsp;</td>
 		<td class="actions">

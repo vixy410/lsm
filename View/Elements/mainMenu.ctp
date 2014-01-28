@@ -7,7 +7,8 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Meridian: LSM</a>
+       <?php echo $this->Html->image('logo.png',array('alt'=>'Meridian Solutions Pvt. Ltd.','width'=>'165px')); ?>
+        
     </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">

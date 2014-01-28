@@ -25,7 +25,7 @@
 		echo $this->Form->input('email', array('type' => 'email'));
 		echo $this->Form->input('phone');
 		echo $this->Form->input('role');
-                echo $this->Form->input('created');
+                //echo $this->Form->input('created');
 	?>
 	</fieldset>
 <?php 

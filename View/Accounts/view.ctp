@@ -12,6 +12,30 @@
 			<?php echo h($account['Account']['account_name']); ?>
 			&nbsp;
 		</dd>
+                
+                
+                <dt><?php echo __('Address'); ?></dt>
+		<dd>
+			<?php echo h($account['Account']['address']); ?>
+			&nbsp;
+		</dd>
+                <dt><?php echo __('City'); ?></dt>
+		<dd>
+			<?php echo h($account['Account']['city']); ?>
+			&nbsp;
+		</dd>
+                <dt><?php echo __('State'); ?></dt>
+		<dd>
+			<?php echo h($account['Account']['state']); ?>
+			&nbsp;
+		</dd>
+                <dt><?php echo __('Board Number'); ?></dt>
+		<dd>
+			<?php echo h($account['Account']['board_number']); ?>
+			&nbsp;
+		</dd>
+                
+                
 		<dt><?php echo __('Url'); ?></dt>
 		<dd>
 			<?php echo h($account['Account']['url']); ?>
