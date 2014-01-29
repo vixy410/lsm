@@ -7,7 +7,7 @@
 	<h2><?php echo __('Users'); ?></h2>
         <table class="table table-bordered table-striped table-condensed table-responsive" cellpadding="0" cellspacing="0">
 	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
+			<!--<th><?php //echo $this->Paginator->sort('id'); ?></th>-->
 			<th><?php echo $this->Paginator->sort('fname'); ?></th>
 			<th><?php echo $this->Paginator->sort('lname'); ?></th>
 			<th><?php echo $this->Paginator->sort('username'); ?></th>
@@ -20,7 +20,7 @@
 	</tr>
 	<?php foreach ($users as $user): ?>
 	<tr>
-		<td><?php echo h($user['User']['id']); ?>&nbsp;</td>
+		<!--<td><?php //echo h($user['User']['id']); ?>&nbsp;</td>-->
 		<td><?php echo h($user['User']['fname']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['lname']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['username']); ?>&nbsp;</td>

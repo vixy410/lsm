@@ -1,10 +1,7 @@
-<div class="leads view well col-sm-10">
-    <!---------------->
-   <?php $this->Html->addCrumb('View Lead'); ?>
-    <!----------------->
-    
-<h2><?php echo __('Lead'); ?></h2>
-	<dl class="dl-horizontal">
+A Lead has been added by <?php echo $current_user['User']['username'] ?><br>
+Details
+<br>
+<dl >
 		<!--<dt><?php //echo __('Id'); ?></dt>
 		<dd>
 			<?php //echo h($lead['Lead']['id']); ?>
@@ -12,7 +9,7 @@
 		</dd>-->
 		<dt><?php echo __('Account'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($lead['Account']['account_name'], array('controller' => 'accounts', 'action' => 'view', $lead['Account']['id'])); ?>
+			<?php echo h($lead['Account']['account_name']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Name'); ?></dt>
@@ -67,19 +64,14 @@
 		</dd>
 		<dt><?php echo __('Status'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($lead['Status']['status'], array('controller' => 'statuses', 'action' => 'view', $lead['Status']['id'])); ?>
+			<?php echo h($lead['Status']['status']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('User'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($lead['User']['username'], array('controller' => 'users', 'action' => 'view', $lead['User']['id'])); ?>
-			&nbsp;
-		</dd>
+		
 		<dt><?php echo __('Date Added'); ?></dt>
 		<dd>
 			<?php echo h($lead['Lead']['date_added']); ?>
 			&nbsp;
 		</dd>
-	</dl>
-</div>
-
+</dl>

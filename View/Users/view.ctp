@@ -1,18 +1,20 @@
-<div class="users view well col-md-4">
+<div class="users view  well col-md-10">
     <?php $this->Html->addCrumb('View User'); ?>
 <h2><?php echo __('User'); ?></h2>
-	<dl>
-		<dt><?php echo __('Id'); ?></dt>
+<dl class="dl-horizontal">
+    
+		<!--<dt><?php //echo __('Id'); ?></dt>
 		<dd>
-			<?php echo h($user['User']['id']); ?>
+			<?php //echo h($user['User']['id']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Fname'); ?></dt>
+		</dd>-->
+             <tr>
+		<dt><?php echo __('First Name'); ?></dt>
 		<dd>
 			<?php echo h($user['User']['fname']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Lname'); ?></dt>
+		<dt><?php echo __('Last Name'); ?></dt>
 		<dd>
 			<?php echo h($user['User']['lname']); ?>
 			&nbsp;
@@ -47,6 +49,7 @@
 			<?php echo h($user['User']['created']); ?>
 			&nbsp;
 		</dd>
+    
 	</dl>
 </div>
 

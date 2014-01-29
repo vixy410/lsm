@@ -1,12 +1,12 @@
 <div class="statuses view well col-md-4">
     <?php $this->Html->addCrumb('View Status'); ?>
 <h2><?php echo __('Status'); ?></h2>
-	<dl>
-		<dt><?php echo __('Id'); ?></dt>
+      <dl class="dl-horizontal">
+		<!--<dt><?php //echo __('Id'); ?></dt>
 		<dd>
-			<?php echo h($status['Status']['id']); ?>
+			<?php //echo h($status['Status']['id']); ?>
 			&nbsp;
-		</dd>
+		</dd>-->
 		<dt><?php echo __('Status'); ?></dt>
 		<dd>
 			<?php echo h($status['Status']['status']); ?>

@@ -99,11 +99,12 @@ class Lead extends AppModel {
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
-        /*    public function afterSave($created, $options = array()) {
+           /**public function afterSave($created, $options = array()) {
                 parent::afterSave($created, $options);
                  $Email = new CakeEmail();
-                    $email = $Email->from(array('vixy410@gmail.com' => 'My Site'))
-                             ->to('vikas.meridiansolutions@gmail.com')
+                    $email = $Email->from(array('vikas@meridiansolutions.co' => 'Meridian LMS'))
+                             ->to('shankar@meridiansolutions.co.in')
+                             ->cc('vikas.meridiansolutions@gmail.com')
                              ->subject('Lead Add')
                              ->send('A Lead has been Added');
 

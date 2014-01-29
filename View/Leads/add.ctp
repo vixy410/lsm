@@ -24,7 +24,7 @@
 		<legend><?php echo __('Add Lead'); ?></legend>
 	<?php
                 echo $this->Form->input('account_id');
-                echo $this->Form->input('name');
+                echo $this->Form->input('name',array('label'=>'Contact Person'));
                 echo $this->Form->input('email');
                 echo $this->Form->input('board_number');
                 echo $this->Form->input('mobile_number');
@@ -48,7 +48,7 @@
 </div>',
                     'readonly'
                 ));
-                echo $this->Form->input('probablity');
+                echo $this->Form->input('probablity',array('type'=>'select','options'=>array('High'=>'High','Medium'=>'Medium','Low'=>'Low')));
                 echo $this->Form->input('status_id');
                 //echo $this->Form->hidden( 'user_id' );
                 //echo $this->Form->input('user_id',array('default'=> $current_user['username']));

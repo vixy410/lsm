@@ -4,14 +4,14 @@
 	<h2><?php echo __('Status'); ?></h2>
         <table class="table table-bordered table-condensed table-striped table-responsive" cellpadding="0" cellspacing="0">
 	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
+			<!--<th><?php //echo $this->Paginator->sort('id'); ?>--></th>
 			<th><?php echo $this->Paginator->sort('status'); ?></th>
 			<th><?php echo $this->Paginator->sort('description'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php foreach ($statuses as $status): ?>
 	<tr>
-		<td><?php echo h($status['Status']['id']); ?>&nbsp;</td>
+		<!--<td><?php //echo h($status['Status']['id']); ?>&nbsp;</td>-->
 		<td><?php echo h($status['Status']['status']); ?>&nbsp;</td>
 		<td><?php echo h($status['Status']['description']); ?>&nbsp;</td>
 		<td class="actions">

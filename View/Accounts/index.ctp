@@ -6,7 +6,7 @@
 	<h2><?php echo __('Accounts'); ?></h2>
         <table  class="table table-bordered table-condensed table-responsive table-striped" cellpadding="0" cellspacing="0">
 	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
+			<!--<th><?php //echo $this->Paginator->sort('id'); ?></th>-->
 			<th><?php echo $this->Paginator->sort('account_name'); ?></th>
                         <th><?php echo $this->Paginator->sort('address'); ?></th>
                         <th><?php echo $this->Paginator->sort('city'); ?></th>
@@ -18,7 +18,7 @@
 	</tr>
 	<?php foreach ($accounts as $account): ?>
 	<tr>
-		<td><?php echo h($account['Account']['id']); ?>&nbsp;</td>
+		<!--<td><?php //echo h($account['Account']['id']); ?>&nbsp;</td>-->
 		<td><?php echo h($account['Account']['account_name']); ?>&nbsp;</td>
                 <td><?php echo h($account['Account']['address']); ?>&nbsp;</td>
                 <td><?php echo h($account['Account']['city']); ?>&nbsp;</td>

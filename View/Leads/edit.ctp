@@ -46,7 +46,7 @@
 </div>',
                     'readonly'
                 ));
-		echo $this->Form->input('probablity');
+		echo $this->Form->input('probablity',array('type'=>'select','options'=>array('High'=>'High','Medium'=>'Medium','Low'=>'Low')));
 		echo $this->Form->input('status_id');
 		//echo $this->Form->input('user_id');
 		//echo $this->Form->input('date_added');
