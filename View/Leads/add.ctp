@@ -1,5 +1,6 @@
 <div class="leads form">
-  <?php     ?>
+  <?php   //$populate = $this->requestAction(array('controller'=>'leads','action'=>'view'));  ?>
+    <?php //pr($populate); ?>
 
 
     <?php echo $this->Html->script('bootstrap-datetimepicker.min', array('inline' => 'false')) ?>
@@ -39,10 +40,12 @@
                 ?>
 <br><br>
                                 
-<?php
-                echo $this->Form->input('closing_month',array(
+<?php echo $this->Form->input('closing_month',array(
+                        //'class'=>FALSE,
+                        //options'=>FALSE,
+                        'type'=>'text',
                     'label'=>'Likely Closing Date',
-                    "between"=>"<div class='col-sm-10 input-group date form_date col-md-5' data-date='' data-date-format='dd MM yyyy' data-link-field='dtp_input2' data-link-format='yyyy-mm-dd'>",
+                    "between"=>"<div class='col-sm-10 input-group date form_date col-md-5' data-date='' data-date-format='yyyy-mm-dd' data-link-field='dtp_input2' data-link-format='yyyy-mm-dd'>",
                     'after' => '<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
 </div>',

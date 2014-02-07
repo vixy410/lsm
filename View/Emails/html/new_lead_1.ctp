@@ -1,5 +1,5 @@
 A Lead has been added by <?php 
-//$user['User']['username'] == $current_user['username'];
+
 echo $user['User']['username']; ?><br>
 Details
 <br>

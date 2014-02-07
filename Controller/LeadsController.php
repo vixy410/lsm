@@ -1,6 +1,8 @@
 <?php
 App::uses('AppController', 'Controller');
 App::uses('CakeEmail', 'Network/Email');
+//App::import('Controller','Users');
+//App::import('Controller','Statuses');
 
 /**
  * Leads Controller
@@ -73,11 +75,50 @@ class LeadsController extends AppController {
     
 // Mail Set up
    
-function _sendMail($id) {
+/**function _sendMail($id) {
+    $this->loadModel('User');
+    $this->loadModel('Account');
     
     $Email = new CakeEmail();
+    $this->Lead->contain( array('User','Account') );
                     $email = $Email->from(array('vikas@meridiansolutions.co'=>'Meridian Lead Sales Management'))
                              //->to('shankar@meridiansolutions.co.in')
+                            ->viewVars(array(
+                                'user' => $this->User->find('first',array('conditions'=>  array('id'=> $this->Auth->user('id')))),
+                                'account' => $this->Lead->Account->find('first')
+                                ))
+                             ->to('vikas.meridiansolutions@gmail.com')
+                             ->subject('Lead Add')
+                            ->emailFormat('html')
+                            ->template('new_lead')
+                             ->send('A Lead has been Added');
+}*/
+    
+    function _sendMail($id) {
+    $this->loadModel('User');
+    $this->loadModel('Account');
+    
+    $conditionsSubQuery ['"Lead"."user_id"'] = $this->Auth->user('id'); 
+    $db = $this->Lead->getDataSource();
+    $subQuery = $db->buildStatement(array(
+        'table'=>$db->fullTableName($this->Lead),
+        'conditions'=>$conditionsSubQuery
+    ),
+        $this->Lead
+            );
+    $subQuery ='"Lead"."account_id" IN ('.$subQuery.')';
+    $subQueryExpression = $db->expression($subQuery);
+    $conditions[] = $subQueryExpression;
+    
+    
+    $Email = new CakeEmail();
+    //$this->Lead->contain( array('User','Account') );
+                    $email = $Email->from(array('vikas@meridiansolutions.co'=>'Meridian Lead Sales Management'))
+                             //->to('shankar@meridiansolutions.co.in')
+                            ->viewVars(array(
+                                'user' => $this->User->find('first',array('conditions'=>  array('id'=> $this->Auth->user('id')))),
+                                 'account' => $this->Account->find('first',array('conditions'=>array('id'=>$conditions)))
+                                ))
                              ->to('vikas.meridiansolutions@gmail.com')
                              ->subject('Lead Add')
                             ->emailFormat('html')
@@ -112,7 +153,15 @@ function _sendMail($id) {
  */
 	public function view($id = null) {
 		if (!$this->Lead->exists($id)) {
-			throw new NotFoundException(__('Invalid lead'));
+			//throw new NotFoundException(__('Invalid lead'));
+                        //return $this->redirect(array('action' => 'index'));
+                   /* $this->Session->setFlash(__('Invalid Lead.'),'alert',array(
+                                    'plugin' => 'BoostCake',
+                                    'class' => 'alert-danger'
+                                ));
+			$this->redirect(array('action'=>'index'),null,true);
+                     //$this->Redirect->idEmpty($id, array('action'=>'index'));*/
+                    $this->Redirect->flashWarning('Invalid Lead', array('action'=>'index'));
 		}
 		$options = array('conditions' => array('Lead.' . $this->Lead->primaryKey => $id));
 		$this->set('lead', $this->Lead->find('first', $options));
@@ -126,22 +175,21 @@ function _sendMail($id) {
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Lead->create();
-                                  $this->Lead->contain( array('User','Status') );
+                                  //$this->Lead->contain( array('User','Status') );
 
                         $this->request->data['Lead']['user_id'] = $this->Auth->user('id');
                        $this->request->data['Lead']['date_added'] = date_default_timezone_set("Asia/Kolkata");
 			if ($this->Lead->save($this->request->data)) {
-                            $this->_sendMail($this->request->data['Lead']['user_id']);
-				$this->Session->setFlash(__('The lead has been saved.'),'alert',array(
+                            //$this->_sendMail($this->request->data['Lead']['user_id']);
+                            $this->Redirect->flashSuccess('Lead Saved', array('action'=>'index'));
+                            
+				/*$this->Session->setFlash(__('The lead has been saved.'),'alert',array(
                                     'plugin' => 'BoostCake',
                                     'class' => 'alert-success'
                                 ));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'index'));*/
 			} else {
-				$this->Session->setFlash(__('The lead could not be saved. Please, try again.'),'alert',array(
-                                    'plugin' => 'BoostCake',
-                                    'class' => 'alert-danger'
-                                ));
+				$this->Redirect->flashWarning('Could not perform operations. Please try again', array('action'=>'index'));
 			}
 		}
                 
@@ -264,8 +312,52 @@ function _sendMail($id) {
         }
         
         
+        //user filter
+        
+       // find all user
+        
+        public function user_filter($arg1 = NULL) {
+            
+            //$this->render('filter');
+            //$arg = $arg1;
+            
+            $this->loadModel('User');
+            
+             $this->User->recursive = 0;
+            $userFilter = $this->User->find('all',array(
+                'fields' => array('User.username')
+            ));
+            
+            
+            
+            $this->set('userFilter', $userFilter);
+            $this->Paginator->settings = array(
+                    'order' => array(
+                        'date_added' => 'desc'
+                    ),
+                'conditions' => array('User.username' => $arg1)
+                );
+		$this->set('leads', $this->Paginator->paginate());
+            
+            return $userFilter;
+            
+            
+            
+            
+        }
         
         
+  // Method to redirect if posts not found
         
-        
+  // Redirect a Post if it is not found 
+	/*function _findFunction( $id = null ){
+		//Store your posts in a variable
+		$variable = $this->Lead->find('first', array( 'conditions' => array('Lead.id = ' => $id) ));
+		if(empty($variable)){
+			$this->Session->setFlash(__('Lead Not found', true));
+			$this->redirect(array('action'=>'index'),null,true);
+		}
+
+		return $variable;
+	}  */
         }

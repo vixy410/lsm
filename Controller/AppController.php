@@ -56,6 +56,7 @@ class AppController extends Controller {
                                             ),
                                 'Cookie',
                                 'RequestHandler',
+                                'Redirect'
                                 //'Security'
                                 );
     
@@ -64,6 +65,8 @@ isAuthorize method
 access rights to login user        
         
 */
+   // public $theme = 'CakeStrap';
+    
     
     public function isAuthorized( $user ){
         return true;
